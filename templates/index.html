@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Recent Posts</h2>
+  {% if posts|length == 0 %}
+    <p class="muted">No posts yet.</p>
+  {% endif %}
+  {% for p in posts %}
+    <div class="post">
+      <h3><a href="{{ url_for('view_post', post_id=p.id) }}">{{ p.title }}</a></h3>
+      <p class="small">by <strong>{{ p.author }}</strong> — {{ p.created_at_readable }}</p>
+      <p>{{ p.body[:220] }}{% if p.body|length > 220 %}...{% endif %}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
+<!-- created by generative ai-->
