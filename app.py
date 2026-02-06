@@ -4,10 +4,14 @@ from flask_bcrypt import Bcrypt
 from bson.objectid import ObjectId
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET", "super-secret-key") 
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI", "mongodb://localhost:27017/2")
+app.secret_key = os.environ.get("FLASK_SECRET")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
